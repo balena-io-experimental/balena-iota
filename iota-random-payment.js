@@ -16,18 +16,17 @@ const depth = 3;
 const minimumWeightMagnitude = 9;
 
 // Replace this seed with the one that owns the address you used to receive test tokens 
-const seed =
-  'PUETPSEITFEVEWCWBTSIZM9NKRGJEIMXTULBACGFRQK9IMGICLBKW9TTEVSDQMGWKBXPVCBMMCXWMNPDX';
+const seed = process.env.SEED_ADDRESS;
 
 // Create a wrapping function so you can use async/await
 const sendPayment = async () => {
   
   // Generating random value --> change for data from a sensor or similar
-  randomValue = Math.floor(Math.random() * 1000)
+  let randomValue = Math.floor(Math.random() * 1000)
   console.log("Random = "+randomValue);
 
   // Define an address to which to send IOTA tokens 
-  const receivingAddress = "CHMZRJOHZ9VMVMRGPBVELECEZNFYSIFWC9QHXZCKICGHPEYESDKZJSPRASKKQ9VTDQXRXIJGVMCQTHJJZ";
+  const receivingAddress = process.env.RECEIVING_ADDRESS;
 
   // Define an input transaction object
   // that sends 1 Ki to your new address
@@ -38,7 +37,7 @@ const sendPayment = async () => {
     }
   ];
 
-  console.log('Sending 1 Ki to ' + receivingAddress);
+  console.log('Sending 1 Ki to ' + receivingAddress + ' from seed '+ seed);
 
   try {
     // Construct the bundle and sign your input transactions
